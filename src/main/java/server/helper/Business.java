@@ -1,4 +1,4 @@
-package main.java.server.helper;
+package server.helper;
 
 /**
  * Represents a business entity.

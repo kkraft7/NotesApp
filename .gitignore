@@ -1,6 +1,8 @@
 
 *.class
 *.iml
+*.ipr
 */pom.xml
 */.idea
+.idea/*
 

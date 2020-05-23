@@ -1,6 +1,6 @@
-package main.java.server;
+package server;
 
-import main.java.server.helper.Business;
+import server.helper.Business;
 
 import java.time.LocalDateTime;
 

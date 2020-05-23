@@ -1,4 +1,4 @@
-package main.java.server;
+package server;
 
 import java.net.MalformedURLException;
 import java.net.URL;

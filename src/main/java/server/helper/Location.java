@@ -1,4 +1,4 @@
-package main.java.server.helper;
+package server.helper;
 
 /**
  * Represents an American address (not internationalized).

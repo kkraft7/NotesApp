@@ -1,4 +1,4 @@
-package main.java.server;
+package server;
 
 /**
  * Represents an artwork in a specific medium.

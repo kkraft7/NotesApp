@@ -1,14 +1,12 @@
-package main.java.server;
+package server;
 
-import java.io.*;
 import java.util.*;
-import java.lang.Math;
 
 /**
 ** Generic class for implementing a tree structure.
  */
 public class Node<T> {
-  private String name;
+  private final String name;
   private Node<T> parent;
   private int level;
   private ArrayList<Node<T>> children = new ArrayList<>();
@@ -46,12 +44,16 @@ public class Node<T> {
     setParent(newParent);
   }
 
+  // The level is set here (outside of the constructor) to support changing the parent node
   public void setParent(Node<T> newParent) {
     parent = newParent;
-    if (parent != null)
+    if (parent != null) {
       parent.addChild(this);
-    // Level is always determined based on the parent:
-    level = (parent == null ? 1 : parent.getLevel() + 1);
+      level = parent.getLevel() + 1;
+    }
+    else {
+      level = 1;
+    }
   }
 
   // Define toString()?}

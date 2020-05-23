@@ -1,11 +1,14 @@
-package main.java.server;
+package server;
+
+import javax.persistence.MappedSuperclass;
 
 /**
  * Base class for note data.
  */
+@MappedSuperclass
 public class Base {
-  String title;
-  String description;
+  private String title;
+  private String description;
 
   public Base(String title, String description) {
     this.title = title;

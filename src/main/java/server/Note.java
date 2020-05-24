@@ -1,5 +1,7 @@
 package server;
 
+import server.helper.Link;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.persistence.*;
@@ -10,32 +12,31 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "NOTES")
-public class Note extends Base {
+public class Note extends Node<Note> {
   @Id
   @Column(name="NOTE_ID")
   @GeneratedValue
   private Long noteId;
+  private String description;
   private final LocalDateTime created;
-  private ArrayList<String> notes;
   private ArrayList<Link> links;
 
-  public Note(String title, String description) {
-    super(title, description);
+  protected Note() {
+    super(null);
+    created = LocalDateTime.now();
+  }
+
+  public Note(String title, String desc) {
+    super(title);
+    this.description = desc;
     created = LocalDateTime.now();
   }
 
   public Note(String title) { this(title, null); }
 
+  public String getDescription() { return description; }
+  public void setDescription(String newDescription) { description = newDescription; }
   public LocalDateTime getDateCreated() { return created; }
-
-  public void addNote(String note) {
-    if (notes == null) {
-      notes = new ArrayList<>();
-    }
-    notes.add(note);
-  }
-
-  public ArrayList<String> getNotes() { return notes; }
 
   public void addLink(Link link) {
     if (links == null) {

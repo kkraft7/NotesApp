@@ -1,23 +1,25 @@
 package server;
 
 import java.util.*;
+import javax.persistence.MappedSuperclass;
 
 /**
 ** Generic class for implementing a tree structure.
  */
+@MappedSuperclass
 public class Node<T> {
-  private final String name;
-  private Node<T> parent;
+  private String name;
+  private Node<T> parentItem;
   private int level;
-  private ArrayList<Node<T>> children = new ArrayList<>();
+  private ArrayList<Node<T>> childItems = new ArrayList<>();
 
   /**
-   * ** Constructor for non-root node.
+   * Constructor for non-root node.
    */
   public Node(String name, Node<T> parent) {
     this.name = name;
-    children = new ArrayList<Node<T>>();
-    setParent(parent);
+    childItems = new ArrayList<Node<T>>();
+    setParentItem(parent);
   }
 
   /**
@@ -29,32 +31,34 @@ public class Node<T> {
 
   public int getLevel() { return level; }
   public String getName() { return name; }
+  public void setName(String newName) { this.name = newName; }
 
-  public Node<T> getParent() { return parent; }
-  public Node<T> getChild(int index) { return children.get(index); }
-  public ArrayList<Node<T>> getChildren() {
-    return children;
+  public Node<T> getParentItem() { return parentItem; }
+  public Node<T> getChildItem(int index) { return childItems.get(index); }
+  // getChildItem(String name)?
+  public ArrayList<Node<T>> getChildItems() {
+    return childItems;
   }
 
-  public void addChild(Node<T> child) {
-    children.add(child);
+  public void addChildItem(Node<T> child) {
+    childItems.add(child);
   }
 
   public void move(Node<T> newParent) {
-    setParent(newParent);
+    setParentItem(newParent);
   }
 
   // The level is set here (outside of the constructor) to support changing the parent node
-  public void setParent(Node<T> newParent) {
-    parent = newParent;
-    if (parent != null) {
-      parent.addChild(this);
-      level = parent.getLevel() + 1;
+  public void setParentItem(Node<T> newParent) {
+    parentItem = newParent;
+    if (parentItem != null) {
+      parentItem.addChildItem(this);
+      level = parentItem.getLevel() + 1;
     }
     else {
       level = 1;
     }
   }
 
-  // Define toString()?}
+  // Define toString()?
 }
